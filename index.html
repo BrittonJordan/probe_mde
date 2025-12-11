@@ -185,10 +185,55 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img id="probemde-teaser" src="./static/images/4b_probing_sequence.gif" alt="ProbeMDE teaser" style="height:100%; width:auto;" />
+      <div style="position: relative; width: 100%; display: flex; align-items: center; justify-content: center;">
+        <div id="slideshow-container" style="width: 100%; position: relative;">
+          <div class="slideshow-item" style="display: none;">
+            <img src="./static/images/4b_probing_sequence.gif" alt="ProbeMDE teaser" style="width:100%; height:auto;"/>
+          </div>
+          <div class="slideshow-item" style="display: none;">
+            <img src="./static/images/6b_probing_sequence.gif" alt="ProbeMDE result" style="width:100%; height:auto;"/>
+          </div>
+          <div class="slideshow-item" style="display: none;">
+            <img src="./static/images/2a_probing_sequence.gif" alt="ProbeMDE result" style="width:100%; height:auto;"/>
+          </div>
+          <div class="slideshow-item" style="display: none;">
+            <img src="./static/images/sim415_probing_sequence.gif" alt="ProbeMDE result" style="width:100%; height:auto;"/>
+          </div>
+          
+          <a class="prev" onclick="changeSlide(-1)" style="cursor:pointer; position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 48px; padding: 10px; z-index: 10; user-select: none;">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)" style="cursor:pointer; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 48px; padding: 10px; z-index: 10; user-select: none;">&#10095;</a>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 1rem;">
+        <span class="dot" onclick="currentSlide = 0; showSlide(currentSlide);" style="cursor:pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+        <span class="dot" onclick="currentSlide = 1; showSlide(currentSlide);" style="cursor:pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+        <span class="dot" onclick="currentSlide = 2; showSlide(currentSlide);" style="cursor:pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+        <span class="dot" onclick="currentSlide = 3; showSlide(currentSlide);" style="cursor:pointer; height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block;"></span>
+      </div>
+      
       <h2 class="subtitle has-text-centered">ProbeMDE uses cost-aware robot proprioception to refine a depth estimate of endoscopic imagery.</h2>
     </div>
   </div>
+  
+  <script>
+    let currentSlide = 0;
+    function showSlide(n) {
+      const slides = document.querySelectorAll('.slideshow-item');
+      const dots = document.querySelectorAll('.dot');
+      if (n >= slides.length) currentSlide = 0;
+      if (n < 0) currentSlide = slides.length - 1;
+      slides.forEach(slide => slide.style.display = 'none');
+      dots.forEach(dot => dot.style.backgroundColor = '#bbb');
+      slides[currentSlide].style.display = 'block';
+      dots[currentSlide].style.backgroundColor = '#717171';
+    }
+    function changeSlide(n) {
+      currentSlide += n;
+      showSlide(currentSlide);
+    }
+    showSlide(currentSlide);
+  </script>
 </section>
 
 
